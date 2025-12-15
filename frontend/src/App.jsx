@@ -1,5 +1,5 @@
 /*eslint-disable no-unused-vars */
-import { Routes, Route, Link } from "react-router-dom";
+import { HashRouter as Router, Routes, Route } from "react-router-dom";
 import { motion } from "framer-motion";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
