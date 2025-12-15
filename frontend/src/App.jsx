@@ -3,7 +3,7 @@ import { Routes, Route, Link } from "react-router-dom";
 import { motion } from "framer-motion";
 import Login from "./pages/Login";
 import Register from "./pages/Register";
-import Navbar from "./components/navbar";
+import Navbar from "./components/Navbar";
 import { AuthProvider } from "./context/AuthProvider";
 import ProtectedRoute from "./components/ProtectedRoute";
 import Dashboard from "./pages/user/Dashboard";
