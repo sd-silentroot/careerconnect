@@ -12,9 +12,12 @@ export default function ManageUsers() {
   // ✅ Stable function
   const fetchUsers = useCallback(async () => {
     try {
-      const res = await axios.get("http://localhost:5000/api/users/all", {
-        headers: { Authorization: `Bearer ${token}` },
-      });
+      const res = await axios.get(
+        "https://careerconnect-2xbz.onrender.com/api/users/all",
+        {
+          headers: { Authorization: `Bearer ${token}` },
+        }
+      );
       setUsers(res.data);
     } catch (error) {
       console.error("Error fetching users:", error);
@@ -30,10 +33,13 @@ export default function ManageUsers() {
   const handleDelete = async (userId) => {
     if (!window.confirm("Are you sure you want to delete this user?")) return;
     try {
-      await axios.delete("http://localhost:5000/api/users/delete", {
-        headers: { Authorization: `Bearer ${token}` },
-        data: { id: userId },
-      });
+      await axios.delete(
+        "https://careerconnect-2xbz.onrender.com/api/users/delete",
+        {
+          headers: { Authorization: `Bearer ${token}` },
+          data: { id: userId },
+        }
+      );
       setUsers((prev) => prev.filter((u) => u._id !== userId));
     } catch (error) {
       console.error("Error deleting user:", error);

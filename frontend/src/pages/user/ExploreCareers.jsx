@@ -29,7 +29,9 @@ export default function ExploreCareers() {
   useEffect(() => {
     const fetchJobs = async () => {
       try {
-        const res = await fetch("http://localhost:5000/api/jobs");
+        const res = await fetch(
+          "https://careerconnect-2xbz.onrender.com/api/jobs"
+        );
         const data = await res.json();
         setJobs(data);
       } catch (err) {
@@ -43,9 +45,12 @@ export default function ExploreCareers() {
   useEffect(() => {
     const fetchProfile = async () => {
       try {
-        const res = await fetch("http://localhost:5000/api/users/profile", {
-          headers: { Authorization: `Bearer ${token}` },
-        });
+        const res = await fetch(
+          "https://careerconnect-2xbz.onrender.com/api/users/profile",
+          {
+            headers: { Authorization: `Bearer ${token}` },
+          }
+        );
         if (res.ok) {
           const data = await res.json();
           const p = data.profile || {}; // ✅ handle nested profile
@@ -75,14 +80,17 @@ export default function ExploreCareers() {
     e.preventDefault();
     console.log("Profile being sent:", profile);
     try {
-      const res = await fetch("http://localhost:5000/api/users/update", {
-        method: "PUT",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${token}`,
-        },
-        body: JSON.stringify({ profile }),
-      });
+      const res = await fetch(
+        "https://careerconnect-2xbz.onrender.com/api/users/update",
+        {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+          body: JSON.stringify({ profile }),
+        }
+      );
       const data = await res.json();
       if (res.ok) {
         alert("✅ Profile updated successfully!");
@@ -101,14 +109,17 @@ export default function ExploreCareers() {
 
     try {
       // STEP 1: Update profile first
-      const updateRes = await fetch("http://localhost:5000/api/users/update", {
-        method: "PUT",
-        headers: {
-          "Content-Type": "application/json",
-          Authorization: `Bearer ${token}`,
-        },
-        body: JSON.stringify({ profile }),
-      });
+      const updateRes = await fetch(
+        "https://careerconnect-2xbz.onrender.com/api/users/update",
+        {
+          method: "PUT",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${token}`,
+          },
+          body: JSON.stringify({ profile }),
+        }
+      );
 
       const updateData = await updateRes.json();
       if (!updateRes.ok) {
@@ -118,7 +129,7 @@ export default function ExploreCareers() {
 
       // STEP 2: Apply for the job after successful profile update
       const applyRes = await fetch(
-        `http://localhost:5000/api/applications/apply/${selectedJob._id}`,
+        `https://careerconnect-2xbz.onrender.com/api/applications/apply/${selectedJob._id}`,
         {
           method: "POST",
           headers: {

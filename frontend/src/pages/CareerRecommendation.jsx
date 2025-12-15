@@ -18,7 +18,9 @@ export default function CareersPage() {
   useEffect(() => {
     const fetchJobs = async () => {
       try {
-        const res = await fetch("http://localhost:5000/api/jobs");
+        const res = await fetch(
+          "https://careerconnect-2xbz.onrender.com/api/jobs"
+        );
         if (!res.ok) throw new Error("Failed to load jobs");
 
         const data = await res.json();

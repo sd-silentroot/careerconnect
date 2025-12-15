@@ -21,13 +21,16 @@ export default function TrackProgress() {
       const token = sessionStorage.getItem("token");
       if (!token) throw new Error("User not authenticated");
 
-      const res = await fetch("http://localhost:5000/api/applications/my", {
-        method: "GET",
-        headers: {
-          Authorization: `Bearer ${token}`,
-          "Cache-Control": "no-store",
-        },
-      });
+      const res = await fetch(
+        "https://careerconnect-2xbz.onrender.com/api/applications/my",
+        {
+          method: "GET",
+          headers: {
+            Authorization: `Bearer ${token}`,
+            "Cache-Control": "no-store",
+          },
+        }
+      );
 
       const text = await res.text();
       let data;

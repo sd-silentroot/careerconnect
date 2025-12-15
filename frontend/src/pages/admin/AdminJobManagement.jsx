@@ -18,7 +18,9 @@ export default function AdminJobManagement() {
   // ✅ Fetch all jobs
   const fetchJobs = async () => {
     try {
-      const response = await fetch("http://localhost:5000/api/jobs");
+      const response = await fetch(
+        "https://careerconnect-2xbz.onrender.com/api/jobs"
+      );
       const data = await response.json();
       setJobs(data);
     } catch (error) {
@@ -39,8 +41,8 @@ export default function AdminJobManagement() {
     try {
       const method = editingJob ? "PUT" : "POST";
       const url = editingJob
-        ? `http://localhost:5000/api/jobs/${editingJob._id}`
-        : "http://localhost:5000/api/jobs";
+        ? `https://careerconnect-2xbz.onrender.com/api/jobs/${editingJob._id}`
+        : "https://careerconnect-2xbz.onrender.com/api/jobs";
 
       const response = await fetch(url, {
         method,
@@ -79,12 +81,15 @@ export default function AdminJobManagement() {
     const token = sessionStorage.getItem("token");
 
     try {
-      const response = await fetch(`http://localhost:5000/api/jobs/${id}`, {
-        method: "DELETE",
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      });
+      const response = await fetch(
+        `https://careerconnect-2xbz.onrender.com/api/jobs/${id}`,
+        {
+          method: "DELETE",
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      );
       const data = await response.json();
       alert(data.message);
       fetchJobs();

@@ -14,7 +14,7 @@ export default function Applications() {
     try {
       const token = localStorage.getItem("token");
       const res = await fetch(
-        "http://localhost:5000/api/applications/admin/all",
+        "https://careerconnect-2xbz.onrender.com/api/applications/admin/all",
         {
           headers: {
             Authorization: `Bearer ${token}`,
@@ -41,7 +41,7 @@ export default function Applications() {
     try {
       const token = localStorage.getItem("token");
       const res = await fetch(
-        `http://localhost:5000/api/applications/admin/status/${id}`,
+        `https://careerconnect-2xbz.onrender.com/api/applications/admin/status/${id}`,
         {
           method: "PUT",
           headers: {
@@ -74,7 +74,7 @@ export default function Applications() {
     try {
       const token = localStorage.getItem("token");
       const res = await fetch(
-        `http://localhost:5000/api/applications/admin/delete/${id}`,
+        `https://careerconnect-2xbz.onrender.com/api/applications/admin/delete/${id}`,
         {
           method: "DELETE",
           headers: {

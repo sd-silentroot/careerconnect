@@ -11,7 +11,7 @@ export default function ResetPassword() {
 
     try {
       const res = await fetch(
-        `http://localhost:5000/api/users/reset-password/${token}`,
+        `https://careerconnect-2xbz.onrender.com/api/users/reset-password/${token}`,
         {
           method: "POST",
           headers: { "Content-Type": "application/json" },
