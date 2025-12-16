@@ -2,6 +2,7 @@
 import { useContext, useEffect, useState } from "react";
 import { AuthContext } from "../../context/AuthContext";
 import { motion, AnimatePresence } from "framer-motion";
+import { useNavigate } from "react-router-dom";
 import {
   Briefcase,
   BarChart3,
@@ -14,6 +15,7 @@ import {
 } from "lucide-react";
 
 export default function Dashboard() {
+  const navigate = useNavigate();
   const { user: contextUser, token } = useContext(AuthContext);
   const [user, setUser] = useState(contextUser || null);
   const [showProfile, setShowProfile] = useState(false);
@@ -162,7 +164,7 @@ export default function Dashboard() {
         <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
           <motion.div
             whileHover={{ scale: 1.05 }}
-            onClick={() => (window.location.href = "/user/explore-careers")}
+            onClick={() => navigate("/user/explore-careers")}
             className="group p-6 bg-indigo-600 text-white rounded-2xl shadow-md hover:shadow-lg transition cursor-pointer"
           >
             <Briefcase className="mx-auto mb-3 w-10 h-10 group-hover:rotate-6 transition" />
@@ -174,7 +176,7 @@ export default function Dashboard() {
 
           <motion.div
             whileHover={{ scale: 1.05 }}
-            onClick={() => (window.location.href = "/user/track-progress")}
+            onClick={() => navigate("/user/track-progress")}
             className="group p-6 bg-white border border-gray-200 text-indigo-700 rounded-2xl shadow-md hover:shadow-lg transition cursor-pointer"
           >
             <BarChart3 className="mx-auto mb-3 w-10 h-10 text-indigo-600 group-hover:scale-110 transition" />
@@ -186,7 +188,7 @@ export default function Dashboard() {
 
           <motion.div
             whileHover={{ scale: 1.05 }}
-            onClick={() => (window.location.href = "/user/resources")}
+            onClick={() => navigate("/user/resources")}
             className="group p-6 bg-gray-50 text-indigo-700 rounded-2xl shadow-md hover:shadow-lg transition cursor-pointer"
           >
             <BookOpen className="mx-auto mb-3 w-10 h-10 text-indigo-500 group-hover:rotate-6 transition" />
@@ -198,7 +200,7 @@ export default function Dashboard() {
 
           <motion.div
             whileHover={{ scale: 1.05 }}
-            onClick={() => (window.location.href = "/user/AIRecommendation")}
+            onClick={() => navigate("/user/AIRecommendation")}
             className="group p-6 bg-indigo-100 text-indigo-800 rounded-2xl shadow-md hover:shadow-lg transition cursor-pointer"
           >
             <Sparkles className="mx-auto mb-3 w-10 h-10 text-indigo-500 group-hover:rotate-6 transition" />
