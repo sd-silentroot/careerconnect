@@ -67,7 +67,7 @@ export default function Navbar() {
             <>
               <li>
                 <Link
-                  to="/dashboard"
+                  to={user.role === "admin" ? "/admin/dashboard" : "/dashboard"}
                   className="text-gray-700 hover:text-indigo-600 transition"
                 >
                   Dashboard
@@ -154,7 +154,9 @@ export default function Navbar() {
               {user && (
                 <>
                   <Link
-                    to="/dashboard"
+                    to={
+                      user.role === "admin" ? "/admin/dashboard" : "/dashboard"
+                    }
                     onClick={() => setMenuOpen(false)}
                     className="flex items-center gap-3 text-gray-700 hover:text-indigo-600 transition"
                   >
