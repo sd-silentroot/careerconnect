@@ -253,7 +253,6 @@ export default function Dashboard() {
               >
                 Update Profile
               </button>
-
               {/* Update Form */}
               <AnimatePresence>
                 {isUpdating && (

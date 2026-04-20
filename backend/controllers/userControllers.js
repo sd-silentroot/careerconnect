@@ -4,7 +4,7 @@ const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 
 // REGISTER USER
-const registerUser = async (req, res) => {
+const registerUser = async (req, res, next) => {
   try {
     const { name, email, password } = req.body;
 
@@ -35,7 +35,7 @@ const registerUser = async (req, res) => {
 };
 
 // LOGIN USER
-const loginUser = async (req, res) => {
+const loginUser = async (req, res, next) => {
   try {
     const { email, password } = req.body;
     const user = await User.findOne({ email });
@@ -68,7 +68,7 @@ const loginUser = async (req, res) => {
 };
 
 // GET PROFILE (Protected)
-const getUserProfile = async (req, res) => {
+const getUserProfile = async (req, res, next) => {
   try {
     const user = await User.findById(req.user.id).select("-password");
     if (!user) {
@@ -81,7 +81,7 @@ const getUserProfile = async (req, res) => {
 };
 
 // UPDATE USER (Protected)
-const updateUser = async (req, res) => {
+const updateUser = async (req, res, next) => {
   try {
     const { name, email, password, profile } = req.body;
     const user = await User.findById(req.user.id);
@@ -114,7 +114,7 @@ const updateUser = async (req, res) => {
 };
 
 // DELETE USER (Protected)
-const deleteUser = async (req, res) => {
+const deleteUser = async (req, res, next) => {
   try {
     const user = await User.findById(req.user.id);
     if (!user) {
@@ -129,7 +129,7 @@ const deleteUser = async (req, res) => {
 };
 
 // ✅ Admin Only - Get all users
-const getAllUsers = async (req, res) => {
+const getAllUsers = async (req, res, next) => {
   try {
     const users = await User.find().select("-password");
     res.json(users);
@@ -154,7 +154,7 @@ const forgotPassword = async (req, res) => {
 
     //In Console  (email  simulation)
     console.log(
-      ` 🔗 Password reset link: http://localhost:5173/reset-password/${resetToken}`
+      ` 🔗 Password reset link: http://localhost:5173/reset-password/${resetToken}`,
     );
 
     res.json({
@@ -183,7 +183,6 @@ const resetPassword = async (req, res) => {
         .json({ message: "Invalid token or user not found" });
     }
 
-    // Password hash karo aur update karo
     const hashedPassword = await bcrypt.hash(newPassword, 10);
     user.password = hashedPassword;
     await user.save();
